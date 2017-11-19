@@ -14,67 +14,89 @@
 ~ permissions and limitations under the License.
 -->
 <project>
-  <modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.vibe</groupId>
-  <artifactId>vibe-server</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <packaging>jar</packaging>
+    <groupId>com.vibe</groupId>
+    <artifactId>vibe-server</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
-  <name>vibe-server</name>
-  <description>Vibe Server for managing the Vibe application</description>
+    <name>vibe-server</name>
+    <description>Vibe Server for managing the Vibe application</description>
 
-  <parent>                              <!-- Get parameters and allow bulk testing -->
-    <artifactId>getting-started-java</artifactId>
-    <groupId>com.example</groupId>
-    <version>1.0.0</version>
-    <relativePath>..</relativePath>
-  </parent>
+    <parent>                              <!-- Get parameters and allow bulk testing -->
+        <artifactId>getting-started-java</artifactId>
+        <groupId>com.example</groupId>
+        <version>1.0.0</version>
+        <relativePath>..</relativePath>
+    </parent>
 
-  <properties>
-    <java.version>1.8</java.version>
-    <maven.compiler.source>${java.version}</maven.compiler.source> <!-- REQUIRED -->
-    <maven.compiler.target>${java.version}</maven.compiler.target> <!-- REQUIRED -->
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <appengine.maven.plugin>1.3.2</appengine.maven.plugin>
-  </properties>
+    <properties>
+        <java.version>1.8</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source> <!-- REQUIRED -->
+        <maven.compiler.target>${java.version}</maven.compiler.target> <!-- REQUIRED -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <appengine.maven.plugin>1.9.59</appengine.maven.plugin>
+    </properties>
 
-  <dependencies>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-web</artifactId>
-      <version>1.5.8.RELEASE</version>
-    </dependency>
+    <repositories>
+        <repository>
+            <id>spring-libs-release</id>
+            <name>Spring Releases</name>
+            <url>https://repo.spring.io/libs-release</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-test</artifactId>
-      <version>1.5.8.RELEASE</version>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>1.5.8.RELEASE</version>
+        </dependency>
 
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-        <version>1.5.7.RELEASE</version>
-        <executions>
-          <execution>
-            <goals>
-              <goal>repackage</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-<!-- START plugin -->
-      <plugin>
-        <groupId>com.google.cloud.tools</groupId>
-        <artifactId>appengine-maven-plugin</artifactId>
-        <version>${appengine.maven.plugin}</version>
-      </plugin>
-<!-- END plugin -->
-    </plugins>
-  </build>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <version>1.5.8.RELEASE</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-redis</artifactId>
+            <version>2.0.1.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.18</version>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>1.5.7.RELEASE</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- START plugin -->
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>appengine-maven-plugin</artifactId>
+                <version>${appengine.maven.plugin}</version>
+            </plugin>
+            <!-- END plugin -->
+        </plugins>
+    </build>
 </project>
